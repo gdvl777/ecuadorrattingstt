@@ -37,8 +37,8 @@ expectedResult = 0;
 upsetResult = 50;
 }
 if (higherRatedPlayerWins) {
-return higherRatedPlayer+=expectedResult;
+return [higherRatedPlayer+=expectedResult, lowerRatedPlayer-=expectedResult];
 } else {
-return higherRatedPlayer-=upsetResult;
+return [higherRatedPlayer-=upsetResult, lowerRatedPlayer+=upsetResult];
 }
 }
