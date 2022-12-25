@@ -32,10 +32,10 @@
       const player2Rating = document.getElementById('player2Rating').value;
 
       if (player1Rating > player2Rating) {
-        const result = usattRating(player1Rating, player2Rating);
+        const result = ecuadorratings(player1Rating, player2Rating);
         resultDiv.innerHTML = `El resultado esperado era que ${player1Name} ganara con ${result.expectedResult} puntos. Sin embargo, ${player2Name} ganó con ${result.upsetResult} puntos. ¡Sorpresa!`;
       } else if (player1Rating < player2Rating) {
-        const result = usattRating(player2Rating, player1Rating);
+        const result = ecuadorratings(player2Rating, player1Rating);
         resultDiv.innerHTML = `El resultado esperado era que ${player2Name} ganara con ${result.expectedResult} puntos. Sin embargo, ${player1Name} ganó con ${result.upsetResult} puntos. ¡Sorpresa!`;
       } else {
         resultDiv.innerHTML = 'Los rankings de ambos jugadores son iguales. No hay resultado esperado.';
