@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    ECUADOR TT
-  </body>
+<html>
+<head>
+  <title>USATT Ratings</title>
+</head>
+<body>
+  <h1>USATT Ratings</h1>
+  <form id="usattForm">
+    <label for="player1Name">Nombre del jugador 1:</label><br>
+    <input type="text" id="player1Name"><br>
+    <label for="player1Rating">Ranking del jugador 1:</label><br>
+    <input type="number" id="player1Rating"><br>
+    <br>
+    <label for="player2Name">Nombre del jugador 2:</label><br>
+    <input type="text" id="player2Name"><br>
+    <label for="player2Rating">Ranking del jugador 2:</label><br>
+    <input type="number" id="player2Rating"><br>
+    <br>
+    <button type="submit">Evaluar resultado</button>
+  </form>
+  <div id="result"></div>
+  <script src="usattRating.js"></script>
+  <script>
+    const usattForm = document.getElementById('usattForm');
+    const resultDiv = document.getElementById('result');
+
+    usattForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const player1Name = document.getElementById('player1Name').value;
+      const player1Rating = document.getElementById('player1Rating').value;
+      const player2Name = document.getElementById('player2Name').value;
+      const player2Rating = document.getElementById('player2Rating').value;
+
+      if (player1Rating > player2Rating) {
+        const result = usattRating(player1Rating, player2Rating);
+        resultDiv.innerHTML = `El resultado esperado era que ${player1Name} ganara con ${result.expectedResult} puntos. Sin embargo, ${player2Name} ganó con ${result.upsetResult} puntos. ¡Sorpresa!`;
+      } else if (player1Rating < player2Rating) {
+        const result = usattRating(player2Rating, player1Rating);
+        resultDiv.innerHTML = `El resultado esperado era que ${player2Name} ganara con ${result.expectedResult} puntos. Sin embargo, ${player1Name} ganó con ${result.upsetResult} puntos. ¡Sorpresa!`;
+      } else {
+        resultDiv.innerHTML = 'Los rankings de ambos jugadores son iguales. No hay resultado esperado.';
+      }
+    });
+  </script>
+</body>
 </html>
