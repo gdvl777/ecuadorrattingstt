@@ -1,0 +1,22 @@
+<!-- Page wrapper -->
+<div class="page-wrapper">
+  <!-- Form for entering player names and selecting winner -->
+  <form id="rating-form">
+    <label for="player1">Jugador 1:</label>
+    <input type="text" id="player1" name="player1">
+    <br>
+    <label for="player2">Jugador 2:</label>
+    <input type="text" id="player2" name="player2">
+    <br>
+    <label for="winner">¿Quién ganó la partida?</label>
+    <select id="winner" name="winner">
+      <option value="player1">Jugador 1</option>
+      <option value="player2">Jugador 2</option>
+    </select>
+    <br>
+    <button type="submit">Calcular cambio en rating</button>
+  </form>
+  <!-- Divs for displaying player ratings -->
+  <div id="player1-rating">Rating de Jugador 1:</div>
+  <div id="player2-rating">Rating de Jugador 2:</div>
+</div>
