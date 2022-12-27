@@ -45,3 +45,46 @@ let winner = document.getElementById("winner").value;
 // Update player ratings in database
 updateRatings(player1, player2, winner);
 });
+// Function to connect to MongoDB database
+function connectToDB() {
+// Replace with your own MongoDB connection string
+const connectionString = "mongodb+srv://user:<password>@clusterecuttratings.jygvwse.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(connectionString, { useNewUrlParser: true });
+client.connect(function(err) {
+console.log("Connected to MongoDB database");
+});
+return client;
+}
+
+// Function to retrieve player rating from database
+function getPlayerRatingFromDB(playerName) {
+const client = connectToDB();
+const db = client.db("ratings_db");
+const collection = db.collection("ratings");
+collection.findOne({ name: playerName }, function(err, result) {
+client.close();
+return result.rating;
+});
+}
+
+// Function to update player rating in database
+function updatePlayerRatingInDB(playerName, newRating) {
+const client = connectToDB();
+const db = client.db("ratings_db");
+const collection = db.collection("ratings");
+collection.updateOne({ name: playerName }, { $set: { rating: newRating } }, function(err, result) {
+console.log("Updated player rating in database");
+client.close();
+});
+}
+
+// Form submission event listener
+document.getElementById("rating-form").addEventListener("submit", function(event) {
+event.preventDefault();
+// Get form values
+let player1 = document.getElementById("player1").value;
+let player2 = document.getElementById("player2").value;
+let winner = document.getElementById("winner").value;
+// Update player ratings in database
+updateRatings(player1, player2, winner);
+});
